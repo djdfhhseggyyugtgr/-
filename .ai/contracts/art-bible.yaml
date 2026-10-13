@@ -6,7 +6,7 @@ style: vanilla_plus   # 바닐라에 가까운 형태. 해상도보다 실루엣
 texel_density:
   default_px_per_block: 16
   hero_px_per_block: 32     # 보스, NPC, 손에 드는 무기
-  hero_status: pending      # PC 사양을 받은 뒤 확정
+  hero_status: confirmed    # 사용자 확정 (2026-10-13)
   mixing_within_model: forbidden
 
 uv:
@@ -34,10 +34,11 @@ vanilla_json_models:          # 1.21.1 블록·아이템 JSON 모델 규칙
   rotation_angles: [-45, -22.5, 0, 22.5, 45]
   coordinate_range: [-16, 32]
 
-ai_assets:                    # 누가 만드는가
-  hero_models: human
-  albedo_textures: human
-  combat_animations: human
-  cutscenes: human
-  labpbr_maps: ai_draft_human_fix
+ai_assets:                    # 누가 만드는가. AI 활용 과제라서 전부 에이전트가 만들고 사용자가 검수·승인한다
+  hero_models: ai_with_human_review
+  albedo_textures: ai_with_human_review
+  combat_animations: ai_with_human_review
+  cutscenes: ai_with_human_review
+  labpbr_maps: ai_with_human_review
   props_and_blockouts: ai_with_human_review
+  levels: ai_with_human_review
