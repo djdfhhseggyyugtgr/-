@@ -7,3 +7,6 @@ research_raw/
 
 # Agent worktrees
 .claude/worktrees/
+
+# Locally installed MCP servers
+tools/mcp/.cache/

@@ -33,12 +33,14 @@ Claude Code(또는 Codex)가 Blockbench를 직접 조작하고, 프로젝트용 
 ### 3. 저장소 받기
 저장소 폴더는 `C:\Users\gdjam\Downloads\mc-soulslike`이다. 처음이면 루트 README의 방법으로 내려받고, 이미 받았다면 그 폴더에서 `git pull`을 실행한다. 아래 명령은 모두 이 폴더에서 실행한다.
 
-### 4. 헤드리스 서버 미리 받기
-첫 실행은 다운로드 때문에 오래 걸려서 MCP 연결 시간 제한에 걸릴 수 있다. 저장소 폴더에서 한 번 실행해 둔다.
+### 4. 헤드리스 서버 미리 설치
+처음 실행할 때 서버를 `tools\mcp\.cache\`에 설치한다(커밋되지 않는 폴더). 설치에는 십수 초가 걸려서 MCP 연결 시간 제한에 걸릴 수 있으니, 저장소 폴더에서 미리 한 번 실행해 둔다.
 
 ```bat
 node tools\mcp\bbmodel-headless.mjs --help
 ```
+
+정상이면 `installing ... (first run only)`와 `added 98 packages`가 나온 뒤, `blockbench-mcp-headless 1.10.0`으로 시작하는 옵션 목록이 나온다. 두 번째부터는 설치 없이 바로 뜬다.
 
 ### 5. Claude Code 연결
 1. 저장소 폴더에서 `claude`를 실행한다. Claude 앱에서 조작하고 싶다면 `claude remote-control`을 실행한다.
@@ -92,6 +94,16 @@ codex mcp add bbmodel -- node C:\Users\gdjam\Downloads\mc-soulslike\tools\mcp\bb
 | `pbr_preview` (PBR Tools) | Blockbench 4.11.9까지만 지원 |
 | `animation_utils` | 지원 종료. `geckolib`으로 대체됨 |
 | `ambient_occlusion` | 지원 종료 |
+
+## 문제 해결
+
+| 증상 | 원인과 해결 |
+| --- | --- |
+| `npm warn cleanup ... EPERM ... npm-cache\_npx\...` | 예전 런처가 쓰던 npx 임시 폴더를 npm이 지우지 못했다는 경고다. 백신 검사 중이거나 이전 실행이 남아 있으면 생긴다. 지금 런처는 이 폴더를 쓰지 않는다. 신경 쓰이면 Claude Code와 Node를 모두 끈 뒤 `%LocalAppData%\npm-cache\_npx\` 안의 해당 폴더를 지운다 |
+| `DEP0190 DeprecationWarning` | 예전 런처에서 나던 경고다. 최신 런처로 `git pull` 하면 사라진다 |
+| `install failed` | `tools\mcp\.cache\` 폴더를 지우고 다시 실행한다. 회사·학교 네트워크라면 GitHub 접속이 막혔는지 확인한다 |
+| `Could not start Bun` | 서버가 내부에서 쓰는 Bun 실행 파일을 백신이 막았을 수 있다. `tools\mcp\.cache\`를 지우고 다시 설치하거나, 백신 예외에 해당 폴더를 추가한다 |
+| `npm notice New major version` | npm 새 버전 안내다. 무시해도 된다 |
 
 ## 보안과 주의
 
