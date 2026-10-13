@@ -1,0 +1,6 @@
+# API keys
+.ollama_key
+.env
+
+# Raw research dumps (search/fetch JSON, transcripts)
+research_raw/
