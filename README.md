@@ -6,7 +6,7 @@
 
 | 항목 | 내용 |
 | --- | --- |
-| 로컬 기본 작업 폴더 | `C:\Users\gdjam\Downloads\마크 소울라이크 만들기` |
+| 로컬 기본 작업 폴더 (저장소 폴더) | `C:\Users\gdjam\Downloads\mc-soulslike` |
 | 원격 저장소 | GitHub `djdfhhseggyyugtgr/-` |
 | 클라우드 작업 브랜치 | `claude/minecraft-soullike-map-wmru3u` |
 
@@ -15,17 +15,16 @@
 
 ### 로컬 폴더와 저장소 연결
 
-경로에 공백과 한글이 있으므로 항상 따옴표로 감싸서 사용합니다.
+빈 작업 폴더 안에 저장소를 바로 내려받습니다. 마지막의 `.`은 "현재 폴더에 받기"라는 뜻이고, 폴더가 비어 있어야 동작합니다.
 
 ```bat
-cd "C:\Users\gdjam\Downloads\마크 소울라이크 만들기"
-git init
-git remote add origin https://github.com/djdfhhseggyyugtgr/-.git
-git fetch origin
-git checkout claude/minecraft-soullike-map-wmru3u
+cd C:\Users\gdjam\Downloads\mc-soulslike
+git clone -b claude/minecraft-soullike-map-wmru3u https://github.com/djdfhhseggyyugtgr/-.git .
 ```
 
-이미 폴더에 파일이 있다면 `checkout` 전에 백업해 두는 것을 권장합니다.
+이후 클라우드에서 올라온 변경은 같은 폴더에서 `git pull`로 받습니다.
+
+작업 폴더 경로에는 한글과 공백을 넣지 않습니다. Windows Claude Code에서 한글 경로의 파일 검색이 조용히 실패하는 버그가 있습니다([파이프라인 설계 8.1](docs/pipeline/README.md#81-로컬-폴더는-ascii-경로에-둔다-중요)).
 
 ## 기술 스택
 
@@ -57,7 +56,7 @@ git checkout claude/minecraft-soullike-map-wmru3u
 ## 권장 폴더 구조
 
 ```
-마크 소울라이크 만들기/
+mc-soulslike/
 ├── README.md          # 이 문서
 ├── .mcp.json          # Claude Code MCP 서버 설정 (Blockbench)
 ├── .claude/skills/    # Claude Code 프로젝트 스킬 (/blockbench-setup 등)

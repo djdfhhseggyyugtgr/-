@@ -478,10 +478,10 @@ sandbox_mode = "read-only"
 
 ## 8. 실행 환경 배치
 
-### 8.1 로컬 폴더를 ASCII 경로로 옮긴다 (중요)
+### 8.1 로컬 폴더는 ASCII 경로에 둔다 (중요)
 - Windows Claude Code에서 **경로에 한글이 있으면** Glob 검색이 파일이 있어도 "없음"을 반환한다. 오류 없이 조용히 실패해서 에이전트는 파일이 없다고 판단한다(#84966, 2026-10 기준 미해결). [확인]
-- 지금 폴더 `C:\Users\gdjam\Downloads\마크 소울라이크 만들기`가 정확히 해당한다.
-- **`C:\dev\mc-soulslike`처럼 영문·공백 없는 경로로 옮기는 것을 권장한다.**
+- 그래서 작업 폴더를 `C:\Users\gdjam\Downloads\마크 소울라이크 만들기`에서 **`C:\Users\gdjam\Downloads\mc-soulslike`로 바꿨다**(2026-10-13).
+- 앞으로 만드는 하위 폴더와 파일 이름에도 한글과 공백을 넣지 않는다.
 
 ### 8.2 기타 Windows 주의
 - Claude Code의 Bash 샌드박스는 네이티브 Windows에서 동작하지 않는다. 샌드박스가 필요하면 WSL2를 쓴다.

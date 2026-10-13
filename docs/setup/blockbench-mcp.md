@@ -31,7 +31,7 @@ Claude Code(또는 Codex)가 Blockbench를 직접 조작하고, 프로젝트용 
    - risky eval: 켜짐
 
 ### 3. 저장소 받기
-작업 폴더에서 이 브랜치를 pull 한다(루트 README 참고).
+저장소 폴더는 `C:\Users\gdjam\Downloads\mc-soulslike`이다. 처음이면 루트 README의 방법으로 내려받고, 이미 받았다면 그 폴더에서 `git pull`을 실행한다. 아래 명령은 모두 이 폴더에서 실행한다.
 
 ### 4. 헤드리스 서버 미리 받기
 첫 실행은 다운로드 때문에 오래 걸려서 MCP 연결 시간 제한에 걸릴 수 있다. 저장소 폴더에서 한 번 실행해 둔다.
@@ -55,7 +55,7 @@ Claude Code에서 `/blockbench-setup`을 실행한다.
 ### Codex에서 쓰기
 ```bat
 codex mcp add blockbench --url http://localhost:3000/bb-mcp
-codex mcp add bbmodel -- node "C:\Users\gdjam\Downloads\마크 소울라이크 만들기\tools\mcp\bbmodel-headless.mjs"
+codex mcp add bbmodel -- node C:\Users\gdjam\Downloads\mc-soulslike\tools\mcp\bbmodel-headless.mjs
 ```
 
 ## 플러그인 목록 (Blockbench 공식 레지스트리 기준, 2026-10-13)
