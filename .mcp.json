@@ -1,0 +1,13 @@
+{
+  "mcpServers": {
+    "blockbench": {
+      "type": "http",
+      "url": "http://localhost:3000/bb-mcp"
+    },
+    "bbmodel": {
+      "type": "stdio",
+      "command": "node",
+      "args": ["${CLAUDE_PROJECT_DIR:-.}/tools/mcp/bbmodel-headless.mjs"]
+    }
+  }
+}

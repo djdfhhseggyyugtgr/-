@@ -32,10 +32,11 @@ git checkout claude/minecraft-soullike-map-wmru3u
 목표: 블록 조립과 UV 전개 방식의 모델링과 애니메이션을 최고 퀄리티로 만들고, 플레이어 PC에서 50fps 이상을 유지한다.
 근거와 출처는 [기술 스택 조사 결과](docs/research/README.md)에 있다.
 
-- [x] 마인크래프트 버전: **1.21.1** (권장안. 26.x는 Epic Fight와 셰이더 지원이 나온 뒤 다시 검토)
-- [x] 모드 로더: **NeoForge** (권장안)
+- [x] 마인크래프트 버전: **1.21.1** (확정, 2026-10-13. 26.x는 Epic Fight와 셰이더 지원이 나온 뒤 다시 검토)
+- [x] 모드 로더: **NeoForge** (확정)
 - [x] 핵심 모드: Epic Fight와 애드온(전투, 애니메이션), GeckoLib(커스텀 엔티티), Animated Java(연출), Sodium + Iris(렌더링)
 - [x] 모델링 도구: Blockbench 5.2 + Aseprite, Epic Fight 애니메이션은 Blender
+- [x] Blockbench MCP와 플러그인 설치: [설치 가이드](docs/setup/blockbench-mcp.md)
 - [ ] 셰이더 팩과 설정 수준: PC 사양을 받은 뒤 벤치마크로 결정
 - [ ] 텍스처 밀도: 기본 16px/블록, 보스·NPC·무기의 32px 적용 여부는 사양을 보고 결정
 - [ ] 리소스팩 범위 (모델, 텍스처, LabPBR, 사운드, UI, 폰트)
@@ -57,13 +58,19 @@ git checkout claude/minecraft-soullike-map-wmru3u
 ```
 마크 소울라이크 만들기/
 ├── README.md          # 이 문서
+├── .mcp.json          # Claude Code MCP 서버 설정 (Blockbench)
+├── .claude/skills/    # Claude Code 프로젝트 스킬 (/blockbench-setup 등)
 ├── docs/              # 기획서, 보스 설계, 맵 구상 등
-│   └── research/      # 기술 조사 결과와 출처
+│   ├── research/      # 기술 조사 결과와 출처
+│   └── setup/         # 도구 설치 가이드
+├── models/            # Blockbench .bbmodel 원본 (헤드리스 MCP 작업 폴더)
 ├── datapack/          # 데이터팩 소스
 ├── resourcepack/      # 리소스팩 소스
 ├── mods/              # 사용 모드 목록 또는 직접 만든 모드 소스
 ├── world/             # 맵 월드 파일
 └── tools/             # 빌드, 패키징, 조사 스크립트
+    ├── blockbench/    # Blockbench 플러그인 설치·확인 스크립트
+    ├── mcp/           # MCP 서버 런처
     └── research/      # Ollama 웹 검색, Reddit, 유튜브, X 조사 스크립트
 ```
 
