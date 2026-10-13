@@ -37,6 +37,7 @@ git checkout claude/minecraft-soullike-map-wmru3u
 - [x] 핵심 모드: Epic Fight와 애드온(전투, 애니메이션), GeckoLib(커스텀 엔티티), Animated Java(연출), Sodium + Iris(렌더링)
 - [x] 모델링 도구: Blockbench 5.2 + Aseprite, Epic Fight 애니메이션은 Blender
 - [x] Blockbench MCP와 플러그인 설치: [설치 가이드](docs/setup/blockbench-mcp.md)
+- [x] 에이전트 파이프라인 설계: [설계 문서](docs/pipeline/README.md) (Claude Code + Codex + Ollama Cloud)
 - [ ] 셰이더 팩과 설정 수준: PC 사양을 받은 뒤 벤치마크로 결정
 - [ ] 텍스처 밀도: 기본 16px/블록, 보스·NPC·무기의 32px 적용 여부는 사양을 보고 결정
 - [ ] 리소스팩 범위 (모델, 텍스처, LabPBR, 사운드, UI, 폰트)
@@ -61,6 +62,7 @@ git checkout claude/minecraft-soullike-map-wmru3u
 ├── .mcp.json          # Claude Code MCP 서버 설정 (Blockbench)
 ├── .claude/skills/    # Claude Code 프로젝트 스킬 (/blockbench-setup 등)
 ├── docs/              # 기획서, 보스 설계, 맵 구상 등
+│   ├── pipeline/      # 에이전트 파이프라인 설계와 출처
 │   ├── research/      # 기술 조사 결과와 출처
 │   └── setup/         # 도구 설치 가이드
 ├── models/            # Blockbench .bbmodel 원본 (헤드리스 MCP 작업 폴더)

@@ -4,3 +4,6 @@
 
 # Raw research dumps (search/fetch JSON, transcripts)
 research_raw/
+
+# Agent worktrees
+.claude/worktrees/
