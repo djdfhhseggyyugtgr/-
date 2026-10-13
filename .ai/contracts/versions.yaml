@@ -1,0 +1,67 @@
+# 버전 고정 목록. 에이전트는 기억이 아니라 이 파일을 기준으로 API와 형식을 고른다.
+# status: pinned(확정) / to_verify(설치 전 다시 확인) / avoid(쓰지 않음)
+# 근거: docs/research/README.md, docs/research/sources/
+checked: "2026-10-13"
+minecraft: "1.21.1"
+java: 21
+loader:
+  name: neoforge
+  version: "21.1.259"   # maven.neoforged.net 기준 1.21.1 최신 (2026-10-13)
+
+mods:
+  epic_fight:
+    version: "21.17.3.1"
+    status: pinned
+    source: https://www.curseforge.com/minecraft/mc-mods/epic-fight-mod
+    note: 1.21.1 NeoForge 최신판 (2026-05-31)
+  geckolib:
+    version: "4.9.3"
+    status: to_verify
+    source: https://www.curseforge.com/minecraft/mc-mods/geckolib
+    note: 1.21.1용 4.x 계열. 5.x는 1.21.11 이상 전용
+  sodium:
+    version: "0.8.12"
+    status: pinned
+    source: https://github.com/CaffeineMC/sodium/releases/tag/mc1.21.1-0.8.12
+    note: 1.21.1 백포트 정식판 (2026-07-06). 0.8.13은 베타
+  iris:
+    version: "1.8.13"
+    status: pinned
+    source: https://www.curseforge.com/minecraft/mc-mods/irisshaders
+    note: 1.8.14-beta.1은 블록 엔티티가 그림자 패스에서 빠짐 (Iris #3283)
+  weapons_of_miracles:
+    version: "2.0.178"
+    status: to_verify
+  kubejs:
+    version: "2101.7.2-build.377"
+    status: to_verify
+
+tools:
+  blockbench:
+    version: "5.2.2"
+    status: pinned
+    note: 최소 버전. Animated Java는 5.1.4 이상 필요
+  blockbench_mcp:
+    version: "v1.10.0"
+    status: pinned
+    source: https://github.com/jasonjgardner/blockbench-mcp-plugin
+    note: tools/mcp/bbmodel-headless.mjs와 같은 버전으로 유지
+  geckolib_blockbench_plugin:
+    version: "4.2.5"
+    status: pinned
+  animated_java:
+    version: "1.11.0"
+    status: pinned
+    note: Blockbench 플러그인. 블루프린트의 대상 버전은 1.21.1
+  blender:
+    version: "5.0"
+    status: to_verify
+    note: Epic Fight 공식 익스포터가 지원하는 최대 버전 기준
+  node:
+    version: ">=23.6"
+    status: pinned
+    note: 헤드리스 bbmodel 렌더에 필요. PC는 24 LTS 권장
+  codex_cli:
+    version: ">=0.161"
+    status: pinned
+    note: 0.161부터 기본 모델 gpt-6.1-sol. codex mcp-server는 제거됨

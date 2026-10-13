@@ -1,0 +1,54 @@
+{
+  "title": "Performance budget",
+  "description": "Upper limits for asset complexity and the frame-rate target they serve.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["status", "target", "assets", "world"],
+  "properties": {
+    "status": { "enum": ["estimate", "benchmarked"] },
+    "target": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["fps_avg_min", "fps_1pct_low_min", "hardware", "shader"],
+      "properties": {
+        "fps_avg_min": { "type": "integer", "minimum": 50 },
+        "fps_1pct_low_min": { "type": ["integer", "null"], "minimum": 1 },
+        "hardware": { "type": ["string", "null"] },
+        "shader": { "type": ["string", "null"] }
+      }
+    },
+    "assets": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "additionalProperties": false,
+        "minProperties": 1,
+        "properties": {
+          "cubes_max": { "type": "integer", "minimum": 1 },
+          "cubes_hard_ceiling": { "type": "integer", "minimum": 1 },
+          "bones_max": { "type": "integer", "minimum": 1 },
+          "bone_groups_with_cubes_max": { "type": "integer", "minimum": 1 },
+          "texture_px_max": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": { "d16": { "type": "integer" }, "d32": { "type": "integer" } }
+          }
+        }
+      }
+    },
+    "world": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["render_distance_chunks"],
+      "properties": {
+        "render_distance_chunks": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["min", "max"],
+          "properties": { "min": { "type": "integer", "minimum": 2 }, "max": { "type": "integer", "maximum": 32 } }
+        },
+        "boss_arena": { "enum": ["enclosed", "open"] }
+      }
+    }
+  }
+}

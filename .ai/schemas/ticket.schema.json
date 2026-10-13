@@ -1,0 +1,32 @@
+{
+  "title": "Work ticket",
+  "description": "One unit of work with one writer. Status stays FAIL until evidence exists.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["id", "title", "owner", "context", "acceptance", "gates", "budget", "review", "status"],
+  "properties": {
+    "id": { "type": "string", "pattern": "^[a-z0-9][a-z0-9-]*$" },
+    "title": { "type": "string", "minLength": 1 },
+    "owner": { "type": "string", "minLength": 1, "description": "The single writer, e.g. claude-sonnet@worktree-a or human" },
+    "context": { "type": "array", "items": { "type": "string" }, "minItems": 1, "description": "Paths or globs this ticket may change" },
+    "contract": { "type": "array", "items": { "type": "string" } },
+    "acceptance": { "type": "array", "items": { "type": "string" }, "minItems": 1 },
+    "gates": { "type": "array", "items": { "enum": ["G0", "G1", "G2", "G3", "G4", "G5", "G6", "G7", "G8", "G9"] }, "uniqueItems": true, "minItems": 1 },
+    "budget": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["max_turns", "max_usd"],
+      "properties": {
+        "max_turns": { "type": "integer", "minimum": 1 },
+        "max_usd": { "type": "number", "exclusiveMinimum": 0 }
+      }
+    },
+    "review": {
+      "type": "array",
+      "items": { "enum": ["codex-sol-high", "codex-astra", "ollama-glm-5.3", "ollama-kimi-k2.7-code", "claude-verifier", "human"] },
+      "uniqueItems": true
+    },
+    "status": { "enum": ["FAIL", "PASS", "BLOCKED"] },
+    "note": { "type": "string" }
+  }
+}

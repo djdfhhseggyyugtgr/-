@@ -1,0 +1,28 @@
+# 성능 예산. 공식 기준이 없어서 조사 기반 추정치로 시작하고, 벤치마크 후 고친다.
+status: estimate
+target:
+  fps_avg_min: 50
+  fps_1pct_low_min: null   # 벤치마크 후 결정
+  hardware: null           # 사용자 PC 사양 (아직 모름)
+  shader: null             # 벤치마크로 결정
+
+assets:
+  prop:
+    cubes_max: 40
+  mob:
+    cubes_max: 150
+    bones_max: 30
+    texture_px_max: { d16: 128, d32: 256 }
+  elite:
+    cubes_max: 300
+  boss:
+    cubes_max: 800
+    cubes_hard_ceiling: 1500
+    bones_max: 80
+    texture_px_max: { d16: 256, d32: 512 }
+  animated_java_rig:
+    bone_groups_with_cubes_max: 40
+
+world:
+  render_distance_chunks: { min: 8, max: 12 }
+  boss_arena: enclosed

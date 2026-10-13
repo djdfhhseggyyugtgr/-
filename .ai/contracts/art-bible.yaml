@@ -1,0 +1,43 @@
+# 아트 바이블. 모든 모델과 텍스처가 지켜야 하는 시각 규칙.
+# status가 approved가 되기 전까지는 사람이 검토할 초안이다.
+status: draft
+style: vanilla_plus   # 바닐라에 가까운 형태. 해상도보다 실루엣, 애니메이션, 발광, LabPBR에 투자
+
+texel_density:
+  default_px_per_block: 16
+  hero_px_per_block: 32     # 보스, NPC, 손에 드는 무기
+  hero_status: pending      # PC 사양을 받은 뒤 확정
+  mixing_within_model: forbidden
+
+uv:
+  mode: per_face
+  box_uv_allowed_only_for: [modded_entity]   # GeckoLib 새 모델도 box_uv false로 만든다
+
+textures:
+  block_item_size_multiple_of: 16
+  atlas_max_px: 16384
+  hue_shifted_ramps: required
+  forbidden: [pure_black, pure_white, banding, pillow_shading, noise, unnecessary_dithering, mixels]
+  entity_lighting: top_and_front_brighter
+
+labpbr:
+  version: "1.3"
+  normal_suffix: _n           # RGB 노멀, B에 AO, A에 높이
+  specular_suffix: _s         # R 매끄러움, G 반사율/금속, B 다공성·SSS, A 발광
+  normal_format: directx      # Y-
+  height_min: 1
+  emission_none_alpha: 255    # 255는 발광 없음, 0~254가 발광 세기
+  parallax_on_low_tier: false
+
+vanilla_json_models:          # 1.21.1 블록·아이템 JSON 모델 규칙
+  rotation_axes_max: 1
+  rotation_angles: [-45, -22.5, 0, 22.5, 45]
+  coordinate_range: [-16, 32]
+
+ai_assets:                    # 누가 만드는가
+  hero_models: human
+  albedo_textures: human
+  combat_animations: human
+  cutscenes: human
+  labpbr_maps: ai_draft_human_fix
+  props_and_blockouts: ai_with_human_review

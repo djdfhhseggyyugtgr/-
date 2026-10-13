@@ -10,3 +10,6 @@ research_raw/
 
 # Locally installed MCP servers
 tools/mcp/.cache/
+
+# Tool dependencies
+tools/node_modules/

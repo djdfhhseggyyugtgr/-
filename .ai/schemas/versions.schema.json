@@ -1,0 +1,36 @@
+{
+  "title": "Pinned versions",
+  "description": "Single source of truth for the Minecraft, loader, mod and tool versions agents must target.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["checked", "minecraft", "java", "loader", "mods", "tools"],
+  "properties": {
+    "checked": { "type": "string", "pattern": "^\\d{4}-\\d{2}-\\d{2}$", "description": "Date the versions were last checked" },
+    "minecraft": { "const": "1.21.1" },
+    "java": { "type": "integer", "minimum": 21 },
+    "loader": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["name", "version"],
+      "properties": {
+        "name": { "const": "neoforge" },
+        "version": { "type": "string", "pattern": "^21\\.1\\.\\d+$" }
+      }
+    },
+    "mods": { "type": "object", "additionalProperties": { "$ref": "#/definitions/entry" } },
+    "tools": { "type": "object", "additionalProperties": { "$ref": "#/definitions/entry" } }
+  },
+  "definitions": {
+    "entry": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["version", "status"],
+      "properties": {
+        "version": { "type": "string", "minLength": 1 },
+        "status": { "enum": ["pinned", "to_verify", "avoid"] },
+        "source": { "type": "string" },
+        "note": { "type": "string" }
+      }
+    }
+  }
+}

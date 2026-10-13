@@ -37,6 +37,7 @@ git clone -b claude/minecraft-soullike-map-wmru3u https://github.com/djdfhhseggy
 - [x] 모델링 도구: Blockbench 5.2 + Aseprite, Epic Fight 애니메이션은 Blender
 - [x] Blockbench MCP와 플러그인 설치: [설치 가이드](docs/setup/blockbench-mcp.md)
 - [x] 에이전트 파이프라인 설계: [설계 문서](docs/pipeline/README.md) (Claude Code + Codex + Ollama Cloud)
+- [x] 파이프라인 0단계 기반: 공통 규칙 [AGENTS.md](AGENTS.md), 계약·티켓 [.ai/](.ai/README.md), G0 검증기 (진행 상황은 [.ai/PROGRESS.md](.ai/PROGRESS.md))
 - [ ] 셰이더 팩과 설정 수준: PC 사양을 받은 뒤 벤치마크로 결정
 - [ ] 텍스처 밀도: 기본 16px/블록, 보스·NPC·무기의 32px 적용 여부는 사양을 보고 결정
 - [ ] 리소스팩 범위 (모델, 텍스처, LabPBR, 사운드, UI, 폰트)
@@ -58,8 +59,12 @@ git clone -b claude/minecraft-soullike-map-wmru3u https://github.com/djdfhhseggy
 ```
 mc-soulslike/
 ├── README.md          # 이 문서
+├── AGENTS.md          # 모든 에이전트 공통 규칙 (Claude Code, Codex)
+├── CLAUDE.md          # AGENTS.md + Claude Code 전용 메모
+├── .ai/               # 계약(버전·아트·성능·보스), 스키마, 티켓, 증거, 디버그 기록
 ├── .mcp.json          # Claude Code MCP 서버 설정 (Blockbench)
-├── .claude/skills/    # Claude Code 프로젝트 스킬 (/blockbench-setup 등)
+├── .claude/           # Claude Code 프로젝트 설정(훅)과 스킬 (/blockbench-setup 등)
+├── .codex/agents/     # Codex 프로젝트 에이전트 (읽기 전용 리뷰어)
 ├── docs/              # 기획서, 보스 설계, 맵 구상 등
 │   ├── pipeline/      # 에이전트 파이프라인 설계와 출처
 │   ├── research/      # 기술 조사 결과와 출처
@@ -69,7 +74,8 @@ mc-soulslike/
 ├── resourcepack/      # 리소스팩 소스
 ├── mods/              # 사용 모드 목록 또는 직접 만든 모드 소스
 ├── world/             # 맵 월드 파일
-└── tools/             # 빌드, 패키징, 조사 스크립트
+└── tools/             # 빌드, 패키징, 조사 스크립트 (의존성: npm ci --prefix tools)
+    ├── ai/            # G0 계약 검증기와 Claude Code 훅
     ├── blockbench/    # Blockbench 플러그인 설치·확인 스크립트
     ├── mcp/           # MCP 서버 런처
     └── research/      # Ollama 웹 검색, Reddit, 유튜브, X 조사 스크립트

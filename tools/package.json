@@ -1,0 +1,13 @@
+{
+  "name": "mc-soulslike-tools",
+  "private": true,
+  "type": "module",
+  "description": "Repository tooling: contract validation (G0) and agent hooks.",
+  "scripts": {
+    "validate": "node ai/validate.mjs"
+  },
+  "devDependencies": {
+    "ajv": "8.20.0",
+    "yaml": "2.9.1"
+  }
+}

@@ -1,0 +1,18 @@
+# 작업 티켓 템플릿. 복사해서 tickets/<id>.yaml로 만들고 id를 파일 이름과 같게 한다.
+# 작성자는 하나. status는 증거(.ai/evidence/<id>/)가 생기기 전까지 FAIL이다.
+id: example-ticket
+title: 예시 티켓
+owner: claude-sonnet@worktree-a
+context:
+  - src/main/java/example/**
+contract:
+  - .ai/contracts/bosses/_template.yaml
+acceptance:
+  - gradle build 통과
+  - 관련 GameTest 전부 통과
+gates: [G0, G1, G2, G7]
+budget:
+  max_turns: 60
+  max_usd: 8
+review: [codex-sol-high, claude-verifier]
+status: FAIL
