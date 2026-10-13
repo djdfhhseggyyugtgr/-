@@ -1,10 +1,10 @@
 # 성능 예산. 공식 기준이 없어서 조사 기반 추정치로 시작하고, 벤치마크 후 고친다.
 status: estimate
 target:
-  fps_avg_min: 50
+  fps_avg_min: 50          # 보스전 포함 최저 평균. 모니터가 60Hz라 평상시에는 60 고정을 목표로 남는 성능을 화질에 쓴다
   fps_1pct_low_min: null   # 벤치마크 후 결정
-  hardware: null           # 사용자 PC 사양 (아직 모름)
-  shader: null             # 벤치마크로 결정
+  hardware: "RTX 4060 8GB / Ryzen 5 5600 6C12T / DDR4-3200 16GB 싱글 채널 / NVMe SSD / 1920x1080 60Hz / Windows 11 (2026-10-13 측정)"
+  shader: null             # 벤치마크로 결정. 후보: Complementary Unbound 높음 + Euphoria, Photon 높음, Bliss/Eclipse
 
 assets:
   prop:
