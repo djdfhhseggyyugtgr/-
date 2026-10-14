@@ -39,9 +39,14 @@
 - **원인**: `bbmodel_create`에서 `geckolib_model` 형식의 기본값이 `box_uv: true`다.
 - **해결**: 만들 때 `box_uv: false`를 넘긴다. 이 프로젝트는 면별 UV를 쓴다.
 
-## 2026-10-13 · Blockbench MCP · 클라우드에서 헤드리스 렌더가 안 됨
-- **원인**: `bbmodel_render`와 `bbmodel_contact_sheet`는 Node 23.6 이상이 필요한데, 클라우드 컨테이너는 Node 22다.
-- **해결**: 렌더는 사용자 PC(Node 24 LTS)에서 한다.
+## 2026-10-14 · Blockbench MCP · 클라우드에서 헤드리스 렌더하기
+- **증상**: `bbmodel_render`가 "Dawn did not return a GPU adapter"로 실패한다. 렌더러는 Node 23.6 이상과 WebGPU(Vulkan)를 쓰는데, 클라우드 컨테이너는 Node 22이고 GPU가 없다.
+- **해결**:
+  1. `apt-get install -y mesa-vulkan-drivers libvulkan1` (CPU용 Vulkan 드라이버 lavapipe)
+  2. Node 24 경로: `npx -y node@24 -p process.execPath`
+  3. 실행: `VK_ICD_FILENAMES=/usr/share/vulkan/icd.d/lvp_icd.json node tools/mcp/bbmodel-headless.mjs --node <Node 24 경로>`
+- **확인**: `tools/art/proto_heroine.py`가 모델 4개를 만들고 렌더 12장을 약 13초에 끝냈다(2026-10-14). 렌더러의 front 시점은 north 면을 보여 준다.
+- **주의**: 렌더 출력 경로는 헤드리스 서버의 작업 폴더(`models/`) 안이어야 한다.
 
 ## 2026-10-13 · 렌더링 · Iris 1.8.14-beta.1에서 블록 엔티티 그림자가 빠짐
 - **원인**: Iris #3283 (NeoForge 1.21.1).
