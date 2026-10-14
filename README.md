@@ -41,21 +41,23 @@ git clone -b claude/minecraft-soullike-map-wmru3u https://github.com/djdfhhseggy
 - [x] Blockbench MCP와 플러그인 설치: [설치 가이드](docs/setup/blockbench-mcp.md)
 - [x] 에이전트 파이프라인 설계: [설계 문서](docs/pipeline/README.md) (Claude Code + Codex + Ollama Cloud)
 - [x] 파이프라인 0단계 기반: 공통 규칙 [AGENTS.md](AGENTS.md), 계약·티켓 [.ai/](.ai/README.md), G0 검증기 (진행 상황은 [.ai/PROGRESS.md](.ai/PROGRESS.md))
-- [ ] 셰이더 팩과 설정 수준: PC 사양을 받은 뒤 벤치마크로 결정
-- [ ] 텍스처 밀도: 기본 16px/블록, 보스·NPC·무기의 32px 적용 여부는 사양을 보고 결정
-- [ ] 리소스팩 범위 (모델, 텍스처, LabPBR, 사운드, UI, 폰트)
-- [ ] 데이터팩, KubeJS, 커스텀 모드의 역할 분담 (진행도, 체크포인트, 에스투스, 소울 재화, HUD)
+- [x] 텍스처 밀도: 일반 16px/블록, 보스·NPC·무기 32px/블록 (확정)
+- [x] 캐릭터 스타일: 비교 시안 E (5.5~6등신, 4/3 크기 제작 + 0.75배 렌더) → [캐릭터 모델링 핸드북](docs/art/README.md)
+- [x] 2차 대규모 조사 5갈래: [목차와 결론](docs/research/round2.md) — [원작](docs/design/original.md), [모델링](docs/art/README.md), [맵 분위기](docs/world/README.md), [세부 건축](docs/build/README.md), [토탈 컨버전 UI](docs/ui/README.md)
+- [ ] 셰이더 팩과 Iris/Sodium 쌍: PC(RTX 4060)에서 보스 아레나 벤치마크로 결정
+- [x] UI 역할 분담: HUD·게임 화면은 우리 모드(Java), 타이틀·로딩은 FancyMenu + Drippy, 그림·글꼴·소리는 내장 리소스팩 → [UI 문서](docs/ui/README.md)
+- [ ] 데이터팩, KubeJS, 커스텀 모드의 역할 분담 (진행 플래그, 묘목, 수액 병, 정수): 1단계 모드 골격에서 정한다
 
-## 소울라이크 핵심 요소 (초안)
+## 소울라이크 핵심 요소 (원작 AI LIMIT 기준, 자세히는 [기획 초안](docs/design/README.md) 3장)
 
-- [ ] 스태미나 기반 공격, 회피, 방어
-- [ ] 구르기와 무적 프레임
-- [ ] 패턴형 보스전
-- [ ] 화톳불형 체크포인트 (휴식 시 몬스터 재생성, 회복 아이템 충전)
-- [ ] 사망 시 재화 드랍과 회수 시스템
-- [ ] 레벨업과 스탯 분배
-- [ ] 서로 이어지는 맵 구조와 숏컷
-- [ ] 환경으로 전하는 스토리 (아이템 설명, 배치)
+- [ ] 공명율: 스태미나 대신 하나의 게이지. 맞히면 오르고 맞으면 내려가며, 구간에 따라 공격력과 술식이 달라진다
+- [ ] 왼팔 기능(패리, 방패, 클로, 대시)과 술식
+- [ ] 패턴형 보스전 (라이벌 보스의 공명율 게이지, 처형)
+- [ ] 묘목 체크포인트 (휴식 시 적 재생성, 수액 병 충전, 레벨업, 강화, 이동)
+- [ ] 사망 시 정수 일부 손실 (회수 없음)
+- [ ] 레벨업과 5스탯
+- [ ] 서로 이어지는 맵 구조와 지름길
+- [ ] 환경으로 전하는 이야기 (아이템 설명, 배치)
 
 ## 권장 폴더 구조
 
@@ -69,9 +71,13 @@ mc-soulslike/
 ├── .claude/           # Claude Code 프로젝트 설정(훅)과 스킬 (/blockbench-setup 등)
 ├── .codex/agents/     # Codex 프로젝트 에이전트 (읽기 전용 리뷰어)
 ├── docs/              # 기획서, 보스 설계, 맵 구상 등
-│   ├── design/        # 기획 초안 (AI LIMIT 모티브)과 원작 조사 노트
+│   ├── design/        # 기획 초안 (AI LIMIT 모티브), 원작 상세 분석, 원작 조사 노트
+│   ├── art/           # 캐릭터 모델링 핸드북
+│   ├── world/         # 맵 분위기(셰이더, 소리)와 레벨 디자인 규격
+│   ├── build/         # 세부 건축 기법과 AI 건축 파이프라인
+│   ├── ui/            # 토탈 컨버전 UI 설계
 │   ├── pipeline/      # 에이전트 파이프라인 설계와 출처
-│   ├── research/      # 기술 조사 결과와 출처
+│   ├── research/      # 기술 조사 결과(1차)와 2차 조사 목차
 │   └── setup/         # 도구 설치 가이드
 ├── models/            # Blockbench .bbmodel 원본 (헤드리스 MCP 작업 폴더)
 ├── datapack/          # 데이터팩 소스
@@ -80,7 +86,9 @@ mc-soulslike/
 ├── world/             # 맵 월드 파일
 └── tools/             # 빌드, 패키징, 조사 스크립트 (의존성: npm ci --prefix tools)
     ├── ai/            # G0 계약 검증기와 Claude Code 훅
+    ├── art/           # 캐릭터 비교 시안 생성 스크립트
     ├── blockbench/    # Blockbench 플러그인 설치·확인 스크립트
+    ├── build/         # 건축 파이프라인 (지금은 가능성 시험 스크립트)
     ├── mcp/           # MCP 서버 런처
     └── research/      # Ollama 웹 검색, Reddit, 유튜브, X 조사 스크립트
 ```
