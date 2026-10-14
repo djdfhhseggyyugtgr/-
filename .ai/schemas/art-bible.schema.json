@@ -3,69 +3,264 @@
   "description": "Visual rules every model and texture must follow.",
   "type": "object",
   "additionalProperties": false,
-  "required": ["status", "style", "texel_density", "uv", "textures", "labpbr", "vanilla_json_models", "ai_assets"],
+  "required": [
+    "status",
+    "style",
+    "texel_density",
+    "uv",
+    "textures",
+    "labpbr",
+    "vanilla_json_models",
+    "ai_assets"
+  ],
   "properties": {
-    "status": { "enum": ["draft", "approved"] },
-    "style": { "type": "string" },
+    "status": {
+      "enum": [
+        "draft",
+        "approved"
+      ]
+    },
+    "style": {
+      "type": "string"
+    },
     "texel_density": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["default_px_per_block", "hero_px_per_block", "hero_status", "mixing_within_model"],
+      "required": [
+        "default_px_per_block",
+        "hero_px_per_block",
+        "hero_status",
+        "mixing_within_model"
+      ],
       "properties": {
-        "default_px_per_block": { "enum": [16, 32, 64] },
-        "hero_px_per_block": { "enum": [16, 32, 64] },
-        "hero_status": { "enum": ["pending", "confirmed"] },
-        "mixing_within_model": { "const": "forbidden" }
+        "default_px_per_block": {
+          "enum": [
+            16,
+            32,
+            64
+          ]
+        },
+        "hero_px_per_block": {
+          "enum": [
+            16,
+            32,
+            64
+          ]
+        },
+        "hero_status": {
+          "enum": [
+            "pending",
+            "confirmed"
+          ]
+        },
+        "mixing_within_model": {
+          "const": "forbidden"
+        }
       }
     },
     "uv": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["mode", "box_uv_allowed_only_for"],
+      "required": [
+        "mode",
+        "box_uv_allowed_only_for"
+      ],
       "properties": {
-        "mode": { "const": "per_face" },
-        "box_uv_allowed_only_for": { "type": "array", "items": { "type": "string" } }
+        "mode": {
+          "const": "per_face"
+        },
+        "box_uv_allowed_only_for": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
       }
     },
     "textures": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["block_item_size_multiple_of", "atlas_max_px", "hue_shifted_ramps", "forbidden", "entity_lighting"],
+      "required": [
+        "block_item_size_multiple_of",
+        "atlas_max_px",
+        "hue_shifted_ramps",
+        "forbidden",
+        "entity_lighting"
+      ],
       "properties": {
-        "block_item_size_multiple_of": { "const": 16 },
-        "atlas_max_px": { "type": "integer", "maximum": 16384 },
-        "hue_shifted_ramps": { "const": "required" },
-        "forbidden": { "type": "array", "items": { "type": "string" }, "uniqueItems": true },
-        "entity_lighting": { "type": "string" }
+        "block_item_size_multiple_of": {
+          "const": 16
+        },
+        "atlas_max_px": {
+          "type": "integer",
+          "maximum": 16384
+        },
+        "hue_shifted_ramps": {
+          "const": "required"
+        },
+        "forbidden": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "uniqueItems": true
+        },
+        "entity_lighting": {
+          "type": "string"
+        }
       }
     },
     "labpbr": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["version", "normal_suffix", "specular_suffix", "normal_format", "height_min", "emission_none_alpha", "parallax_on_low_tier"],
+      "required": [
+        "version",
+        "normal_suffix",
+        "specular_suffix",
+        "normal_format",
+        "height_min",
+        "emission_none_alpha",
+        "parallax_on_low_tier"
+      ],
       "properties": {
-        "version": { "const": "1.3" },
-        "normal_suffix": { "const": "_n" },
-        "specular_suffix": { "const": "_s" },
-        "normal_format": { "const": "directx" },
-        "height_min": { "type": "integer", "minimum": 1 },
-        "emission_none_alpha": { "const": 255 },
-        "parallax_on_low_tier": { "type": "boolean" }
+        "version": {
+          "const": "1.3"
+        },
+        "normal_suffix": {
+          "const": "_n"
+        },
+        "specular_suffix": {
+          "const": "_s"
+        },
+        "normal_format": {
+          "const": "directx"
+        },
+        "height_min": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "emission_none_alpha": {
+          "const": 255
+        },
+        "parallax_on_low_tier": {
+          "type": "boolean"
+        }
       }
     },
     "vanilla_json_models": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["rotation_axes_max", "rotation_angles", "coordinate_range"],
+      "required": [
+        "rotation_axes_max",
+        "rotation_angles",
+        "coordinate_range"
+      ],
       "properties": {
-        "rotation_axes_max": { "const": 1 },
-        "rotation_angles": { "type": "array", "items": { "enum": [-45, -22.5, 0, 22.5, 45] }, "uniqueItems": true },
-        "coordinate_range": { "type": "array", "items": { "type": "number" }, "minItems": 2, "maxItems": 2 }
+        "rotation_axes_max": {
+          "const": 1
+        },
+        "rotation_angles": {
+          "type": "array",
+          "items": {
+            "enum": [
+              -45,
+              -22.5,
+              0,
+              22.5,
+              45
+            ]
+          },
+          "uniqueItems": true
+        },
+        "coordinate_range": {
+          "type": "array",
+          "items": {
+            "type": "number"
+          },
+          "minItems": 2,
+          "maxItems": 2
+        }
       }
     },
     "ai_assets": {
       "type": "object",
-      "additionalProperties": { "enum": ["human", "ai_draft_human_fix", "ai_with_human_review"] }
+      "additionalProperties": {
+        "enum": [
+          "human",
+          "ai_draft_human_fix",
+          "ai_with_human_review"
+        ]
+      }
+    },
+    "characters": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "build_scale",
+        "render_scale",
+        "adult_heads",
+        "child_heads",
+        "face_px_min",
+        "eyes",
+        "eye_px_per_unit",
+        "mixel_exceptions"
+      ],
+      "properties": {
+        "build_scale": {
+          "type": "number",
+          "minimum": 1,
+          "maximum": 2
+        },
+        "render_scale": {
+          "type": "number",
+          "exclusiveMinimum": 0,
+          "maximum": 1
+        },
+        "adult_heads": {
+          "type": "array",
+          "items": {
+            "type": "number",
+            "minimum": 3,
+            "maximum": 8
+          },
+          "minItems": 2,
+          "maxItems": 2
+        },
+        "child_heads": {
+          "type": "array",
+          "items": {
+            "type": "number",
+            "minimum": 3,
+            "maximum": 6
+          },
+          "minItems": 2,
+          "maxItems": 2
+        },
+        "face_px_min": {
+          "type": "integer",
+          "minimum": 8
+        },
+        "eyes": {
+          "enum": [
+            "painted",
+            "layered_planes"
+          ]
+        },
+        "eye_px_per_unit": {
+          "type": "integer",
+          "minimum": 2,
+          "maximum": 8
+        },
+        "mixel_exceptions": {
+          "type": "array",
+          "items": {
+            "enum": [
+              "eye_planes"
+            ]
+          },
+          "uniqueItems": true
+        }
+      }
     }
   }
 }

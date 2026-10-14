@@ -5,9 +5,19 @@ style: vanilla_plus   # 바닐라에 가까운 형태. 해상도보다 실루엣
 
 texel_density:
   default_px_per_block: 16
-  hero_px_per_block: 32     # 보스, NPC, 손에 드는 무기
+  hero_px_per_block: 32     # 보스, NPC, 손에 드는 무기. 제작 기준 밀도
   hero_status: confirmed    # 사용자 확정 (2026-10-13)
   mixing_within_model: forbidden
+
+characters:                 # 캐릭터 스타일. 비교 시안 E 채택 (2026-10-14, 사용자 "최고 퀄리티로" 위임). docs/design/proto 참고
+  build_scale: 1.3333       # 4/3 크기로 만든다
+  render_scale: 0.75        # 게임 안에서 0.75배로 그린다. 실질 밀도는 약 43px/블록
+  adult_heads: [5.5, 6.0]   # 성인 등신 범위 (원작 리뷰의 "주인공이 어려 보인다" 지적 반영)
+  child_heads: [4.0, 4.2]   # 아이 캐릭터(데이지). 체형 표현 없음
+  face_px_min: 15           # 얼굴 정면 폭 최소 텍셀
+  eyes: layered_planes      # 흰자·홍채·동공·하이라이트·눈꺼풀을 별도 평면 큐브로. 깜빡임과 표정용
+  eye_px_per_unit: 4        # 눈 평면만 높은 밀도 (믹셀 예외)
+  mixel_exceptions: [eye_planes]
 
 uv:
   mode: per_face

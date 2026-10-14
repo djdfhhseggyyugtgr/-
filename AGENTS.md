@@ -24,6 +24,7 @@
 ## 모델·텍스처 규칙
 - `.ai/contracts/art-bible.yaml`과 `.ai/contracts/perf-budget.yaml`을 따른다.
 - UV는 면별(per-face)로 만든다. 한 모델 안에서 텍셀 밀도를 섞지 않는다. GeckoLib 새 모델은 `box_uv: false`로 만든다.
+- 캐릭터는 `art-bible.yaml`의 `characters`를 따른다. 4/3 크기로 만들고 게임에서 0.75배로 그린다. 성인 5.5~6등신, 얼굴 폭 15텍셀 이상. 눈은 흰자·홍채·동공·하이라이트·눈꺼풀을 별도 평면 큐브로 만들고, 이 눈 평면만 텍셀 밀도 예외(4텍셀/유닛)를 둔다. 기준 시안은 `docs/design/proto/heroine_style_compare.png`의 E.
 - 1.21.1 바닐라 블록·아이템 JSON 모델: 회전은 한 축, 각도는 -45/-22.5/0/22.5/45, 좌표는 -16~32.
 - `.bbmodel` 원본은 `models/`에 둔다. 헤드리스 MCP(`bbmodel`)로 고칠 때는 읽을 때 받은 `revision`을 `expected_revision`으로 넘긴다.
 - 고등학교 과제다. 선정적인 표현을 하지 않는다. 아이 캐릭터(순례자 소녀 '데이지')는 연령에 맞는 디자인만 쓰고, 체형 표현은 성인 캐릭터에만 적용한다.

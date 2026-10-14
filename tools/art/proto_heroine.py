@@ -44,9 +44,10 @@ BROW, MOUTH, BLUSH = (40, 40, 66), (176, 92, 98), (242, 168, 164)
 
 VARIANTS = {
     'A': dict(H=30, heads=5.5, legs=0.47, scale=1.0, eyes='texel', label='A  5.5등신 · 믹셀 금지', note='얼굴 11텍셀'),
-    'B': dict(H=31, heads=4.3, legs=0.43, scale=1.0, eyes='texel', label='B  4.3등신 · 믹셀 금지 (권장)', note='얼굴 14텍셀'),
+    'B': dict(H=31, heads=4.3, legs=0.43, scale=1.0, eyes='texel', label='B  4.3등신 · 믹셀 금지', note='얼굴 14텍셀'),
     'C': dict(H=30, heads=5.5, legs=0.47, scale=1.0, eyes='mixel', label='C  5.5등신 · 눈만 믹셀', note='눈 4텍셀/유닛'),
     'D': dict(H=30, heads=5.5, legs=0.47, scale=4 / 3, eyes='texel', label='D  5.5등신 · 0.75배 렌더', note='얼굴 15텍셀'),
+    'E': dict(H=30, heads=5.5, legs=0.47, scale=4 / 3, eyes='mixel', label='E  D + 눈 레이어 (채택)', note='얼굴 15텍셀 · 눈 4텍셀/유닛'),
 }
 
 
@@ -152,7 +153,7 @@ def build_parts(v):
 
     meta = dict(h=h, hy=hy, top=top, L=L, T=T, face_px=int(h * PX_PER_UNIT))
     if v['eyes'] == 'mixel':
-        ew, eh = 1.5, 2.0
+        ew, eh = 1.5 * s, 2.0 * s
         ey = hy + h - h * 0.42 - eh  # eye top at 42% down the face
         for side, sign in (('l', 1), ('r', -1)):
             cx = sign * h * 0.25
@@ -279,28 +280,34 @@ def paint_face(px, x0, y0, f, variant):
 
 
 def paint_mixel_eye(px, x0, y0, w, h):
-    """6x8 texel eye at 4 texels per unit: lashes, iris gradient, pupil, two glints."""
+    """Eye plane at 4 texels per unit: lashes, iris gradient, pupil, two glints."""
+    lash = max(2, h // 4)
+    body = h - lash
     for yy in range(h):
         for xx in range(w):
-            if yy < 2:
+            if yy < lash:
                 col = EYE['lash']
             elif yy == h - 1:
                 col = EYE['lo']
             elif xx in (0, w - 1):
                 col = EYE['white']
-            elif yy < 4:
+            elif yy < lash + body // 3:
                 col = EYE['hi']
-            elif yy < 6:
+            elif yy < lash + 2 * body // 3:
                 col = EYE['mid']
             else:
                 col = EYE['lo']
             px[x0 + xx, y0 + yy] = col + (255,)
-    for yy in (4, 5):
-        for xx in (2, 3):
+    pw = 2 if w < 8 else 3
+    px0, py0 = (w - pw) // 2, lash + body // 3
+    for yy in range(py0, py0 + pw):
+        for xx in range(px0, px0 + pw):
             px[x0 + xx, y0 + yy] = EYE['pupil'] + (255,)
-    px[x0 + 1, y0 + 2] = EYE['glint'] + (255,)
-    px[x0 + 2, y0 + 2] = EYE['glint'] + (255,)
-    px[x0 + 4, y0 + 6] = EYE['glint'] + (255,)
+    px[x0 + 1, y0 + lash] = EYE['glint'] + (255,)
+    px[x0 + 2, y0 + lash] = EYE['glint'] + (255,)
+    if h > lash + 2:
+        px[x0 + 1, y0 + lash + 1] = EYE['glint'] + (255,)
+    px[x0 + w - 2, y0 + h - 3] = EYE['glint'] + (255,)
 
 
 def to_data_url(img):
