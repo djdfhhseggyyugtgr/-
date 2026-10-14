@@ -45,7 +45,12 @@
 
 ## 2026-10-13 · 렌더링 · Iris 1.8.14-beta.1에서 블록 엔티티 그림자가 빠짐
 - **원인**: Iris #3283 (NeoForge 1.21.1).
-- **해결**: 정식판 1.8.13을 쓴다.
+- **해결**: 아직 없음. 1.21.1용 Iris 정식판은 1.8.12뿐이고, 이 판은 Sodium 0.6.13과 짝이다. Sodium 0.8을 쓰려면 1.8.14-beta.1을 써야 한다. 두 조합은 `versions.yaml` 주석 참고.
+
+## 2026-10-14 · 버전 · 존재하지 않는 버전을 고정했던 실수
+- **증상**: `versions.yaml`에 Iris 1.8.13을 고정했는데, 1.21.1용으로 출시된 적이 없다.
+- **원인**: 1차 조사 때 깃허브 이슈 본문의 버전 표기 한 줄을 근거로 삼았다.
+- **해결**: 버전은 Modrinth API(`/v2/project/<id>/version?game_versions=["1.21.1"]&loaders=["neoforge"]`)나 CurseForge 파일 목록으로 확인하고, 의존성(`dependencies`)까지 본 뒤 고정한다.
 
 ## 2026-10-13 · Codex · `codex exec`가 스크립트에서 멈춤
 - **증상**: "Reading additional input from stdin..."에서 멈춘다.

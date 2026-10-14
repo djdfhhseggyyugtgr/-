@@ -19,16 +19,20 @@ mods:
     status: to_verify
     source: https://www.curseforge.com/minecraft/mc-mods/geckolib
     note: 1.21.1용 4.x 계열. 5.x는 1.21.11 이상 전용
+  # Iris와 Sodium은 짝이 맞아야 한다. 1.21.1 NeoForge에는 두 조합만 있다 (Modrinth API 확인, 2026-10-14).
+  #   A안(안정): Iris 1.8.12 + Sodium 0.6.13. 둘 다 정식판이지만 Sodium 0.8 백포트의 성능 개선이 없다.
+  #   B안(성능): Iris 1.8.14-beta.1 + Sodium 0.8.13. Sodium은 정식판, Iris는 베타이고 블록 엔티티 그림자 버그(Iris #3283)가 있다.
+  # 사용자 PC 벤치마크(G6)로 고른다. 이전에 적었던 Iris 1.8.13은 1.21.1용으로 출시된 적이 없다.
   sodium:
-    version: "0.8.12"
-    status: pinned
-    source: https://github.com/CaffeineMC/sodium/releases/tag/mc1.21.1-0.8.12
-    note: 1.21.1 백포트 정식판 (2026-07-06). 0.8.13은 베타
+    version: "0.8.13"
+    status: to_verify
+    source: https://modrinth.com/mod/sodium/versions?g=1.21.1
+    note: B안. A안이면 0.6.13
   iris:
-    version: "1.8.13"
-    status: pinned
-    source: https://www.curseforge.com/minecraft/mc-mods/irisshaders
-    note: 1.8.14-beta.1은 블록 엔티티가 그림자 패스에서 빠짐 (Iris #3283)
+    version: "1.8.14-beta.1"
+    status: to_verify
+    source: https://modrinth.com/mod/iris/versions?g=1.21.1
+    note: B안(Sodium 0.8 대응 베타, #3283 있음). A안이면 1.8.12 + Sodium 0.6.13
   weapons_of_miracles:
     version: "2.0.178"
     status: to_verify
