@@ -16,9 +16,9 @@ mods:
     note: 1.21.1 NeoForge 최신판 (2026-05-31)
   geckolib:
     version: "4.9.3"
-    status: to_verify
+    status: pinned
     source: https://www.curseforge.com/minecraft/mc-mods/geckolib
-    note: 1.21.1용 4.x 계열. 5.x는 1.21.11 이상 전용
+    note: 1.21.1 NeoForge 최신 정식판 (2026-09-16, Modrinth API 확인). 5.x는 1.21.11 이상 전용
   # Iris와 Sodium은 짝이 맞아야 한다. 1.21.1 NeoForge에는 두 조합만 있다 (Modrinth API 확인, 2026-10-14).
   #   A안(안정): Iris 1.8.12 + Sodium 0.6.13. 둘 다 정식판이지만 Sodium 0.8 백포트의 성능 개선이 없다.
   #   B안(성능): Iris 1.8.14-beta.1 + Sodium 0.8.13. Sodium은 정식판, Iris는 베타이고 블록 엔티티 그림자 버그(Iris #3283)가 있다.
@@ -38,7 +38,9 @@ mods:
     status: to_verify
   kubejs:
     version: "2101.7.2-build.377"
-    status: to_verify
+    status: pinned
+    source: https://modrinth.com/mod/kubejs/versions?g=1.21.1
+    note: 1.21.1 NeoForge 최신 정식판 (2026-09-09, Modrinth API 확인)
 
 tools:
   blockbench:
